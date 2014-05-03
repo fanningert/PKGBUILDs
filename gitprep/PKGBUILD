@@ -18,6 +18,7 @@ source=('https://github.com/yuki-kimoto/gitprep/archive/${_commit}.tar.gz')
 
 build() {
   ls -ll
+}
 
 package() {
   ls -ll
