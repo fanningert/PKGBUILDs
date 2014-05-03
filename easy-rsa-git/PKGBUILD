@@ -1,0 +1,41 @@
+# Maintainer: Christian Hesse <mail@eworm.de>
+
+pkgname=easy-rsa-git
+pkgver=3.0.0-git
+pkgrel=1
+pkgdesc="An easy-to-use, robust, and highly configurable VPN (Virtual Private Network) - git checkout"
+arch=('any')
+url="https://github.com/OpenVPN/easy-rsa"
+depends=('openssl')
+conflicts=('easy-rsa')
+provides=('easy-rsa')
+license=('custom')
+source=('git://github.com/OpenVPN/easy-rsa.git')
+
+pkgver() {
+	cd easy-rsa/
+
+	if GITTAG="$(git describe --abbrev=0 --tags 2>/dev/null)"; then
+		echo "$(sed -e "s/^${pkgname%%-git}//" -e 's/^[-_/a-zA-Z]\+//' -e 's/[_-+]/./g' <<< ${GITTAG}).r$(git rev-list --count ${GITTAG}..).g$(git log -1 --format="%h")"
+	else
+		echo "0.r$(git rev-list --count master).g$(git log -1 --format="%h")"
+	fi
+}
+
+build() {
+	cd easy-rsa/
+
+	# Build easy-rsa
+	./build/build-dist.sh --version=${pkgver}
+}
+
+package() {
+        cd easy-rsa/
+
+	mkdir -p ${pkgdir}/usr/share/easy-rsa/
+
+	tar -xf EasyRSA-${pkgver}.tgz
+	cp -R EasyRSA-${pkgver}/* ${pkgdir}/usr/share/easy-rsa/
+}
+
+sha256sums=('SKIP')
