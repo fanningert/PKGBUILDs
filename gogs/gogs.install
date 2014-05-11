@@ -1,0 +1,23 @@
+post_install() {
+  if ! getent group gogs >/dev/null; then
+    groupadd --system gogs
+  fi
+  if ! getent passwd gogs >/dev/null; then
+    useradd -m --system -c 'gogs daemon user' -g gogs -s /bin/bash gogs
+  fi
+
+  chown -R gogs:gogs /home/gogs
+}
+
+post_upgrade() {
+  post_install $1
+}
+
+post_remove() {
+  if getent passwd gogs >/dev/null; then
+    userdel -r gogs
+  fi
+  if getent group gogs >/dev/null; then
+    groupdel gogs
+  fi
+}
