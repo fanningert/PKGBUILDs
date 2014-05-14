@@ -22,6 +22,7 @@ options=('!strip' '!emptydirs')
 install=gogs.install
 
 source=('gogs.service'
+				'patch.diff'
         "https://github.com/gogits/gogs/archive/v$pkgver.tar.gz"
         'git_gogits_cache::git+https://github.com/gogits/cache.git'
         'git_gogits_gfm::git+https://github.com/gogits/gfm.git'
@@ -46,6 +47,7 @@ source=('gogs.service'
         'git_juju2013_goldap::git+https://github.com/juju2013/goldap.git'
         'git_johnweldon_asn1-ber::git+https://github.com/johnweldon/asn1-ber.git')
 sha512sums=('daf96cda9b116ee54eecabb23cd70521528c1eff26f43f3ee985c9d651ad0e5206d251fac182f106ea49b9be78bcab0f8ed3b3489b464c40add4160bab4902e7'
+            '8d53503c335ac35a4a6e4c5cf2118d33926997c1052f81088ced114993d78b50fcf6055c14ccd0d03c88dfb7b43a58481dfe8aa757ebd7d3b2a5fe3b7d158a61'
             '57a4629b267d6eeedc2d97dc6def5a43c3d4a24ee45db2c83840b8fa73f1d7e580e9afb626b38eb7c909af30ae3a45363a34469b78627b1c3eaace3df6eb421b'
             'SKIP'
             'SKIP'
@@ -137,6 +139,10 @@ build() {
   mkdir -p "$GOPATH/src/github.com/gogits/gogs"
   mv $srcdir/gogs-$pkgver/* $GOPATH/src/github.com/gogits/gogs
   cd $GOPATH/src/github.com/gogits/gogs
+
+  # Execute patch
+  patch -Np1 -i $srcdir/patch.diff
+
   go fix
   go build -tags sqlite
 }
