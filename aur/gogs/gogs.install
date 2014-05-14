@@ -22,6 +22,11 @@ post_upgrade() {
 	systemctl start gogs
 }
 
+pre_remove() {
+	systemctl stop gogs.service
+	systemctl disable gogs.service
+}
+
 post_remove() {
   if getent passwd gogs >/dev/null; then
     userdel -r gogs
