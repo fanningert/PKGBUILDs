@@ -74,10 +74,6 @@ sha512sums=('daf96cda9b116ee54eecabb23cd70521528c1eff26f43f3ee985c9d651ad0e5206d
 
 _goroot="/usr/lib/go"
 
-pkgver() {
-  date +%Y%m%d
-}
-
 prepare() {
   export GOROOT=/usr/lib/go
 
@@ -140,7 +136,8 @@ prepare() {
 }
 
 build() {
-	#$pkgver='grep "const APP_VER =" $srcdir/build/src/github.com/gogits/gogs/gogs.go | cut -d "\"" -f 2 | cut -d " " -f 1'
+	# Overwrite the pkgver variable
+	pkgver=$(grep "const APP_VER =" $srcdir/build/src/github.com/gogits/gogs/gogs.go | cut -d "\"" -f 2 | cut -d " " -f 1)
 
   # Fix and compile code
   cd $GOPATH/src/github.com/gogits/gogs
@@ -153,6 +150,9 @@ build() {
 }
 
 package() {
+	# Overwrite the pkgver variable
+	pkgver=$(grep "const APP_VER =" $srcdir/build/src/github.com/gogits/gogs/gogs.go | cut -d "\"" -f 2 | cut -d " " -f 1)
+
   mkdir -p "$pkgdir/home/$_pkgname/"
   cp "$srcdir/build/src/github.com/gogits/gogs/gogs" "$pkgdir/home/$_pkgname/"
   cp -r "$srcdir/build/src/github.com/gogits/gogs/conf" "$pkgdir/home/$_pkgname"
