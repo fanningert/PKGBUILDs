@@ -3,7 +3,7 @@
 pkgname=gogs-git-dev
 _pkgname=gogs
 pkgver=20140516
-pkgrel=2
+pkgrel=1
 pkgdesc="Gogs(Go Git Service) is a Self Hosted Git Service in the Go Programming Language. This is the current git version from branch dev."
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://gogits.org/"
@@ -76,7 +76,7 @@ _goroot="/usr/lib/go"
 
 pkgver(){
 	cd $startdir/git_gogits_gogs/
-	git log --grep=commit -1 | grep "commit " | cut -d " " -f 2
+	git log master..dev | grep commit | head -n 1 | cut -d " " -f 2
 }
 
 prepare() {
