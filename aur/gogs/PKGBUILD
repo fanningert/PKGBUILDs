@@ -16,7 +16,7 @@ optdepends=('sqlite: SQLite support'
             'redis'
             'memcache')
 makedepends=('go>=1.2' 'git')
-conflicts=('gogs-bin' 'gogs' 'gogs-git')
+conflicts=('gogs-bin' 'gogs-git' 'gogs-git-dev')
 options=('!strip' '!emptydirs')
 
 install=gogs.install
