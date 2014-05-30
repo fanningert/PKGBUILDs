@@ -132,6 +132,10 @@ package() {
 	mkdir -p "$pkgdir/usr/share/themes/goges/default/"
   cp -r "$srcdir/build/src/github.com/gogits/gogs/public" "$pkgdir/usr/share/themes/goges/default"
   cp -r "$srcdir/build/src/github.com/gogits/gogs/templates" "$pkgdir/usr/share/themes/goges/default"
+
+  # Workaround for bug #218 (https://github.com/gogits/gogs/issues/218)
+	mkdir -p "$pkgdir/usr/share/$_pkgname/templates"
+	cp "$srcdir/build/src/github.com/gogits/gogs/templates/VERSION" "$pkgdir/usr/share/$_pkgname/templates"
  
   mkdir -p "$pkgdir/srv/$_pkgname/conf"
   cp "$pkgdir/usr/share/$_pkgname/conf/app.ini" "$pkgdir/srv/$_pkgname/conf/app.ini"
