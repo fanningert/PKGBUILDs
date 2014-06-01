@@ -26,7 +26,7 @@ install=gogs.install
 source=('gogs.service'
         'app.ini.patch'
         'start.sh'
-        "$_pkgname::git+http://github.com/gogits/gogs.git#branch=dev")
+        "$_pkgname::git+http://github.com/gogits/gogs.git#tag=v$pkgver")
 
 sha512sums=('SKIP'
             'SKIP'
