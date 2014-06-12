@@ -5,3 +5,4 @@
 *.sig
 pkg/
 src/
+gogs/
