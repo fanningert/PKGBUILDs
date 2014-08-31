@@ -1,14 +1,12 @@
 #!/bin/bash 
 
-# $1 = git package
+# $1 = package name
 # $2 = target directory path
-# $3 = branch/commit, if empty then maste ist used
+# $3 = branch/commit/revision string, if empty then maste ist used
 function go_get {
   if [[ $1 == github.com* ]]
   then 
-    git clone https://$1 $2
-    cd $2
-    git checkout $3
+    get_git $1 $2 $3
   elif [[ $1 == code.google.com* ]]
   then 
     if [[ $3 == "master" ]]
@@ -19,6 +17,18 @@ function go_get {
     fi
   else
     echo "ERROR"
+  fi
+}
+
+# $1 = git package
+# $2 = target directory path
+# $3 = branch/commit/revision string, if empty then maste ist used
+function get_git {
+  git clone https://$1 $2
+  if [[ $3 != "master" ]] && [[ ${3:1} == commit* ]]
+  then
+    cd $2
+    git checkout ${3:8:7}
   fi
 }
 
