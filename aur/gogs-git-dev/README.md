@@ -5,13 +5,16 @@ PKGBUILD files for different versions of Gogs (Go Git Service).
 * ~~Systemd service support~~
 * ~~better file structure~~
 * ~~Publishing on https://aur.archlinux.org~~
-* Test MariaDB and PostgreSQL installation
+* Test
+  * MariaDB support
+  * PostgreSQL support
 * ~~Test on armv6h (Raspberry Pi), armv7h (Cubieboard 2) and on x86_64~~
 * Documentation for usage and configuration - Started with Archlinux Wiki page https://wiki.archlinux.org/index.php/Gogs
-* Read dependencies out of ".gopmfile"
+* ~~Read dependencies out of ".gopmfile"~~
 
 ## Install
 ```
+$ wget https://aur.archlinux.org/packages/go/gogs-*/gogs-*.tar.gz
 $ tar -xvzf /<path to Tarball>/gogs-*.tar.gz
 $ cd <package-name>
 $ makepkg
