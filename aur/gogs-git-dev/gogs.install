@@ -11,7 +11,6 @@ post_install(){
 	mkdir -p /var/log/gogs
 	chown -R gogs:gogs /var/log/gogs
 	chown -R gogs:gogs /srv/gogs
-	chmod -R 600 /srv/gogs/conf
 
 	systemctl daemon-reload
 }
