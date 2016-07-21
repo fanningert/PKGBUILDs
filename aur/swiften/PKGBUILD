@@ -1,0 +1,27 @@
+# Maintainer: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+
+pkgname='swiften'
+pkgver=3.0
+pkgrel=2.1
+arch=('any')
+pkgdesc='XMPP library written in C++ with Boost'
+url="http://swift.im/"
+license=('GPL3')
+depends=('boost' 'libxml2' 'libidn' 'avahi' 'openssl')
+makedepends=('python2' 'openssl' 'boost' )
+source=("http://swift.im/downloads/releases/$pkgbase-$pkgver/$pkgbase-$pkgver.tar.gz")
+sha256sums=('8aa490431190294e62a9fc18b69ccc63dd0f561858d7d0b05c9c65f4d6ba5397')
+
+# Those options need to be consistent between each scons invocation.
+_scons_options='max_jobs=1 optimize=1 debug=0 swiften_dll=1'
+_directory="$pkgbase-$pkgver"
+
+build() {
+  cd "$srcdir/$_directory"
+  ./scons $_scons_options Swiften
+}
+
+package() {
+  cd "$srcdir/$_directory"
+  ./scons $_scons_options SWIFTEN_INSTALLDIR="$pkgdir/usr/" "$pkgdir/usr/"
+}
