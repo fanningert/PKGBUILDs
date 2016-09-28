@@ -1,0 +1,41 @@
+# Maintainer: Thomas Fanninger <thomas@fanninger.at>
+
+pkgname=asus_ux32vd_prime
+pkgver=0.1
+pkgrel=1
+epoch=1
+pkgdesc="Add PRIME support to the core package of Asus UX32VD"
+arch=('i686' 'x86_64')
+changelog=$pkgname.changelog
+url=""
+license=('GPL')
+depends=('xorg-server' 'xf86-video-vesa' 'xf86-video-fbdev' 'xorg-xbacklight' 'xorg-xrandr'
+         'xorg-xinput' 'xf86-input-synaptics' 'xf86-input-libinput' 'xf86-input-mouse' 'xbindkeys'
+         'pulseaudio' 'pulseaudio-alsa' 'pulseaudio-bluetooth' 'pavucontrol' 'alsa-utils'
+         'xdg-user-dirs'
+         'lxde' 'obconf' 'obkey'
+         'libnotify' 'notification-daemon'
+         'lightdm' 'lightdm-gtk-greeter' 'lightdm-gtk-greeter-settings' 'light-locker' 'light-locker-shim-slock'
+         'openbox-theme-adwaita'
+         'xarchiver'
+         'chromium' 'chromium-widevine')
+optdepends=('asus_ux32vd_video: Intel and Nvidia Optimus support')
+makedepends=()
+conflicts=()
+provides=()
+options=('!strip' '!emptydirs')
+backup=()
+
+install=asus_ux32vd.install
+
+prepare() {
+  msg2 "Username"
+}
+
+build() {
+  msg2 "Build program"
+}
+
+package() {
+
+}

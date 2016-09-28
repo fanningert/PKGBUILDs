@@ -1,0 +1,31 @@
+# Maintainer: Thomas Fanninger <thomas@fanninger.at>
+
+pkgname=asus_ux32vd
+pkgver=0.1
+pkgrel=1
+epoch=1
+pkgdesc="Core package for a fresh installation of ArchLinux on the Asus UX32VD"
+arch=('i686' 'x86_64')
+changelog=$pkgname.changelog
+url=""
+license=('GPL')
+depends=('unrar' 'cpio' 'lzop' 'p7zip' 'unrar' 'unzip' 'zip')
+optdepends=()
+makedepends=()
+conflicts=()
+options=('!strip' '!emptydirs')
+backup=()
+
+install=asus_ux32vd.install
+
+prepare() {
+  msg2 "Username"
+}
+
+build() {
+  msg2 "Build program"
+}
+
+package() {
+
+}

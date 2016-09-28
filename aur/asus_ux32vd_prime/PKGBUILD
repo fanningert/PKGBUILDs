@@ -1,0 +1,32 @@
+# Maintainer: Thomas Fanninger <thomas@fanninger.at>
+
+pkgname=asus_ux32vd_prime
+pkgver=0.1
+pkgrel=1
+epoch=1
+pkgdesc="Add PRIME support to the core package of Asus UX32VD"
+arch=('i686' 'x86_64')
+changelog=$pkgname.changelog
+url=""
+license=('GPL')
+depends=('xf86-video-intel' 'xf86-video-nouveau')
+optdepends=()
+makedepends=()
+conflicts=('asus_ux32vd_bumblebee')
+provides=('asus_ux32vd_video')
+options=('!strip' '!emptydirs')
+backup=()
+
+install=asus_ux32vd.install
+
+prepare() {
+  msg2 "Username"
+}
+
+build() {
+  msg2 "Build program"
+}
+
+package() {
+
+}
